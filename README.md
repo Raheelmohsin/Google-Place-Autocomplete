@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Google Places Autocomplete with Map
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React web application that integrates Google Places Autocomplete with Google Maps. 
+Users can search for places using an autocomplete input field, and the selected location is displayed on a Google Map.
+The application also stores search history in Redux.
 
-## Available Scripts
+### Features
 
-In the project directory, you can run:
+- `Google Places` Autocomplete API integration for search suggestions.
+- Display selected place on `Google Maps`.
+- Store search history using `Redux`.
+- Responsive layout using `Ant` Design's grid system.
 
-### `npm start`
+### Requirements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js >= 12.x
+- Google Places API key
+- React 16.8+ (hooks support)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Libraries Used
 
-### `npm test`
+- `React`: JavaScript library for building user interfaces.
+- `Ant Design`: UI component library for React.
+- `Google Maps API`: For rendering maps and places.
+- `Google Places API`: For fetching place autocomplete suggestions.
+- `Redux`: For store search history
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+- Clone the Github repository
+- Navigate to Project directory
+- Run `npm install` to install packages
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Run the Application
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once everything is set up, run the application:
+- run `npm start`
+- The application will run on `http://localhost:3000`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Code Structure and Explanation
 
-### `npm run eject`
+### 1. Components
+### `SearchAutocomplete.js`:
+- This is the main component that handles the Google Places Autocomplete input and displays the selected place on a Google Map. It also interacts with Redux to store search history.
+- The search input is rendered using Ant Design's AutoComplete component.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `Map.js`:
+- This is the second component, in which map will render.When any place is searched, it will display inside map in this component.
+- The Google Map is updated dynamically based on the selected location.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2. Redux
+- `actions.js`:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  - Contains action creators to manage search history in the Redux store.
+  - For example, an action to add a new search term to the store.
+    
+- `reducers.js`:
 
-## Learn More
+  - Manages the state of the application related to search history. When a new search term is submitted, it updates the Redux store.
+- `types.js`:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  - Holds action type constants like ADD_SEARCH_TERM for better maintainability and avoiding hardcoding strings.
+- `store.js`:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  - Configures the Redux store with reducers and middleware like redux-thunk to handle async actions (such as API requests).
+ 
+### 3. Utils
+-  `api.js`:
+  
+    - Contains helper functions for interacting with the Google Places API. For example, fetching place details or suggestions from the API.
+    
+### 4. App.js
+-  The entry point of the application where the Redux store is integrated into the React app using Provider from react-redux.
